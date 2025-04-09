@@ -46,7 +46,7 @@ const sendUserData = async () => {
             })
         }, 3000)
     } catch (error) {
-        return showError({ statusCode: error.statusCode, statusMessage: "Something went wrong" })
+        // return showError({ statusCode: error.statusCode, statusMessage: "Something went wrong" })
     }
 };
 
@@ -57,12 +57,12 @@ onMounted(async () => {
     if (!route.query.id || !route.query.code) {
         return showError({ statusCode: 404, statusMessage: 'Not Found' })
     }
-    fetch('https://api.ipify.org?format=json')
-        .then(x => x.json())
-        .then(({ ip }) => {
-            userData.ipAddress = ip
 
-        });
+
+    const ipAd = await fetch('https://api.ipify.org?format=json')
+    const jsonIp = await  ipAd.json()
+    userData.ipAddress = jsonIp.ip
+
     userData.userAgent = navigator.userAgent
     userData.clickTime = new Date().toISOString()
     userData.userId = route.query.id
