@@ -55,7 +55,7 @@ onMounted(async () => {
 
 
     if (!route.query.id || !route.query.code) {
-        return showError({ statusCode: 404, statusMessage: 'Not Found' })
+        return showError({ statusCode: 500, statusMessage: 'Something went wrong, Please check your link' })
     }
 
 
