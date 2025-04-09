@@ -9,7 +9,6 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "deploy": "gh-pages -d dist"
-
   },
   "dependencies": {
     "@basitcodeenv/vue3-device-detect": "^1.0.3",

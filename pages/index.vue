@@ -15,17 +15,7 @@ const userData = reactive({
 })
 
 
-const { data, status, error, refresh, clear } = await useAsyncData(
-    'mountains',
-    () => $fetch('/api/ping', {
-        headers: useRequestHeaders(['cookie', 'x-forwarded-for']),
 
-    }),
-
-
-
-)
-userData.ipAddress = data.value.address
 const sendUserData = async () => {
     try {
         const sendData = await $fetch(runtimeconfig.public.apiUrl, {
@@ -63,10 +53,16 @@ const sendUserData = async () => {
 
 onMounted(async () => {
 
+
     if (!route.query.id || !route.query.code) {
         return showError({ statusCode: 404, statusMessage: 'Not Found' })
     }
+    fetch('https://api.ipify.org?format=json')
+        .then(x => x.json())
+        .then(({ ip }) => {
+            userData.ipAddress = ip
 
+        });
     userData.userAgent = navigator.userAgent
     userData.clickTime = new Date().toISOString()
     userData.userId = route.query.id
