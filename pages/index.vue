@@ -15,12 +15,16 @@ const userData = reactive({
 })
 
 
-
+//use async
+const runOnServer = useAsyncData('runOnServer', async () => {
+    if (!route.query.id || !route.query.code) {
+        return showError({ statusCode: 500, statusMessage: 'Something went wrong, Please check your link' })
+    }
+})
 const sendUserData = async () => {
     try {
         const sendData = await $fetch(runtimeconfig.public.apiUrl, {
-            credentials: 'omit',
-            mode: 'cors',
+        
             method: 'POST',
             body: JSON.stringify({
                 "ip": userData.ipAddress,
@@ -35,7 +39,9 @@ const sendUserData = async () => {
                 "deviceBrand": userData.deviceInfo.deviceVendor
             }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                credentials: 'omit',
+                mode: 'cors',
             }
         });
 
@@ -54,9 +60,7 @@ const sendUserData = async () => {
 onMounted(async () => {
 
 
-    if (!route.query.id || !route.query.code) {
-        return showError({ statusCode: 500, statusMessage: 'Something went wrong, Please check your link' })
-    }
+   
 
 
     const ipAd = await fetch('https://api.ipify.org?format=json')
