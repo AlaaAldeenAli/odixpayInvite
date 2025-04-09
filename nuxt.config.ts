@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   runtimeConfig: {
     public: {
-      apiUrl: 'https://us-central1-odixpay.cloudfunctions.net/odixpay/us-central1/createInvitation',
+      apiUrl: 'https://us-central1-odixpay.cloudfunctions.net/createInvitation',
     }
 
   },

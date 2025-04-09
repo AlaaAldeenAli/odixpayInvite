@@ -20,7 +20,7 @@ const userData = reactive({
 const sendUserData = async () => {
     try {
         const sendData = await $fetch(runtimeconfig.public.apiUrl, {
-        
+
             method: 'POST',
             body: JSON.stringify({
                 "ip": userData.ipAddress,
@@ -62,7 +62,7 @@ onMounted(async () => {
 
 
     const ipAd = await fetch('https://api.ipify.org?format=json')
-    const jsonIp = await  ipAd.json()
+    const jsonIp = await ipAd.json()
     userData.ipAddress = jsonIp.ip
 
     userData.userAgent = navigator.userAgent
