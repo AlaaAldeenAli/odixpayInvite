@@ -16,11 +16,7 @@ const userData = reactive({
 
 
 //use async
-const runOnServer = useAsyncData('runOnServer', async () => {
-    if (!route.query.id || !route.query.code) {
-        return showError({ statusCode: 500, statusMessage: 'Something went wrong, Please check your link' })
-    }
-})
+
 const sendUserData = async () => {
     try {
         const sendData = await $fetch(runtimeconfig.public.apiUrl, {
@@ -60,7 +56,9 @@ const sendUserData = async () => {
 onMounted(async () => {
 
 
-   
+    if (!route.query.id || !route.query.code) {
+        return showError({ statusCode: 500, statusMessage: 'Something went wrong, Please check your link' })
+    }
 
 
     const ipAd = await fetch('https://api.ipify.org?format=json')
