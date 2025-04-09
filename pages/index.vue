@@ -46,7 +46,7 @@ const sendUserData = async () => {
             })
         }, 3000)
     } catch (error) {
-        // return showError({ statusCode: error.statusCode, statusMessage: "Something went wrong" })
+        return showError({ statusCode: error.statusCode, statusMessage: "Something went wrong" })
     }
 };
 
