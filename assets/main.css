@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+
+html {
+    font-family: "Alexandria", sans-serif !important;
+
+}
+@keyframes l {
+    0% {
+        clip-path: inset(0 1ch 0 0); /* Initial state */
+    }
+    100% {
+        clip-path: inset(0 0 0 0); /* End state */
+    }
+}
+
+.loading::after {
+    display: inline-block;
+    animation: dotty steps(1,end) 1s infinite;
+    content: '';
+    position: absolute;
+  }
+  
+  @keyframes dotty {
+      0%   { content: ''; }
+      25%  { content: '.'; }
+      50%  { content: '..'; }
+      75%  { content: '...'; }
+      100% { content: ''; }
+  }
+.loading-6 {
+    display: inline-block;
+    font-size: 16px;
+    clip-path: inset(0 1ch 0 0);
+    animation: l 1s steps(8, jump-none) infinite;
+
+    
+}
+@keyframes l {
+    to {
+        clip-path: inset(0)
+    }
+}
